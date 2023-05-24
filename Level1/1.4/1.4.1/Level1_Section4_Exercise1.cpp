@@ -1,7 +1,7 @@
 #include<iostream>
 #include<functional>
 
-
+//abstract function object
 template <typename T>
     using FunctionType = std::function<T (const T& t)>;
 
@@ -14,13 +14,11 @@ void print(const FunctionType<T>& f, T t)
 // Part b
 
 // free function
-
 double CircleArea(const double radius){
     return 3.14 * radius * radius;
 }
 
 //function object
-
 struct PerfectRectangleArea{
     double operator() (double side){
         return 1.618 * side * side;

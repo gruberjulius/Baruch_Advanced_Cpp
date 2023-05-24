@@ -1,6 +1,6 @@
 #include<iostream>
 
-//Task B)
+//Task B
 void print(){};
 //this is the tail function
 
@@ -19,9 +19,10 @@ void print(T var1, Types... var2)
 
 int main(){
     // Variadic function templates
-    int j = 1; double d = 2.0;
+    int j = 5; double d = 3.0;
     print(j); print(d); print(j, d); print(d, j);
     std::cout << "\n3 params \n";
+    //function working as expected
     print(d, j, std::bitset<8>(233));
     return 0;
 }

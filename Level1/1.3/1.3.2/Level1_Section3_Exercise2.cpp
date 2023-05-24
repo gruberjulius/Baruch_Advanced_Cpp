@@ -53,25 +53,24 @@ int main(){
 
     double factor = 2.0;
 
-    // We can in essence create compile-time aggregates/whole
-    // part objects on the fly. We only need to write one function.
+    //we only need to write one function because of the variadic templates
     rotate(factor, circle);
     rotate(factor, circle, line);
     rotate(factor, circle, valve);
     rotate(factor*2, circle, valve, line);
 
-	//
 	std::cout << " Iterate through the list of elements" << std::endl;
 	std::array<Shape*, 5> shapeList
 		{ &circle, &line, &circle, &circle, &line};
-
+    //works as expected
 	double factor2 = 20.0;
 
 	for(auto& elem : shapeList){
 		elem->rotate(factor2);
 	}
+    //works as expected
 
-	// We can not iterate throuhg valve because it is not inhariting from the shape base class and the array 
+	// We can not iterate through valve because it is not inhariting from the shape base class and the array 
 	// is only based on elements of class type shape
 
 	return 0;
