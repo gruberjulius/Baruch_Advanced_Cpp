@@ -1,5 +1,4 @@
-// Level1_Section5_Exercise3.cpp: This file contains all the code for this exercise. @Nicolas Buchwalder
-
+//Note: The file compiles with the c++14 compiler
 #include <iostream>
 #include <tuple>
 #include <vector>
@@ -11,11 +10,10 @@
 
 // PART A)
 
-// template structur with static function to get statistics about a vector of certain type
+// template structure with static function to get statistics about a vector of certain type
 template <typename T, typename Vec, typename Tuple, std::size_t N>
 struct Statistics
 {
-
 	static Tuple calcs(const Vec& v) {
 		if (v.empty()) {
 			Tuple zeroes{ std::make_tuple(0, 0, 0, 0, 0) };
@@ -49,7 +47,7 @@ struct Statistics
 template <typename T, typename Vec, typename Tuple, std::size_t N>
 struct Distribution {
 	
-	static Tuple medianmode(const Vec& v) {
+	static Tuple median_mode(const Vec& v) {
 		// is the vector is empty, simply return statistics of 0
 		if (v.empty()) {
 			Tuple zeroes{ std::make_tuple(0,0) };
@@ -59,9 +57,9 @@ struct Distribution {
 		std::sort(sorted_v.begin(), sorted_v.end());
 
 		T median;
-		// median is:
-		//		- if length is odd: middle value
-		//		- if length is even: half of both values in the middle
+		// median is either:
+		// if length is odd: middle value
+		// if length is even: half of both values in the middle
 		if (static_cast<int>(N) % 2 != 0) {
 			median = sorted_v[static_cast<int>(N) / 2];
 		}
@@ -88,7 +86,6 @@ struct Distribution {
 		};
 		T mode{ best };
 		return std::make_tuple(median, mode);
-
 	}
 };
 
@@ -96,7 +93,7 @@ struct Distribution {
 
 
 int main(){
-	// PART A, B)
+	// PART A
 	using tuple_res = std::tuple<double, double, double, double, double>;
 	std::vector<double> vec{ 0, 1, 2, 3, 4 };
 	tuple_res results{ Statistics<double, std::vector<double>, tuple_res, 5>::calcs(vec) };
@@ -110,21 +107,25 @@ int main(){
 	tuple_res results2{ Statistics<double, boost::numeric::ublas::vector<double>, tuple_res, 5>::calcs(vec2) };
 	std::cout << "with boost::numeric::ublas::vector: " << std::get<0>(results2) << ", " << std::get<1>(results2) << ", " << std::get<2>(results2) << ", " << std::get<3>(results2) << ", " << std::get<4>(results2) << std::endl;
 	//=> works also with boost::numeric::ublas::vector<double>, we got the same results
+	// Part B with tie
+	double mean, mean_dev, range, standard_dev, variance;
+	std::tie(mean, mean_dev, range, standard_dev, variance) =  Statistics<double, std::vector<double>, tuple_res, 5>::calcs(vec) ;
+	std::cout << "with std::vector and tie: " << mean <<", " << mean_dev <<", " << range <<", " << standard_dev << ", " << variance << std::endl;
 
 	// PART C)
 
 	using tuple_mm = std::tuple<int, int>;
 	std::vector<int> vec3{ 78,74,68,76,80,84,50,93,55,76,58,74,75 };
-	tuple_mm results3{ Distribution<int, std::vector<int>, tuple_mm, 13>::medianmode(vec3) };
+	tuple_mm results3{ Distribution<int, std::vector<int>, tuple_mm, 13>::median_mode(vec3) };
 	std::cout << "with std::vector: " << std::get<0>(results3) << ", " << std::get<1>(results3) << std::endl;
-	//=> works with std::vector
+	// works fine with std::vector
 
 	boost::numeric::ublas::vector<int> vec4(13);
 	for (int i{ 0 }; i < vec4.size(); ++i) {
 		vec4[i] = vec3[i];
 	};
-	tuple_mm results4{ Distribution<int, boost::numeric::ublas::vector<int>, tuple_mm, 13>::medianmode(vec4) };
+	tuple_mm results4{ Distribution<int, boost::numeric::ublas::vector<int>, tuple_mm, 13>::median_mode(vec4) };
 	std::cout << "with boost::numeric::ublas::vector: " << std::get<0>(results4) << ", " << std::get<1>(results4) << std::endl;
-	//=> works also with boost::numeric::ublas::vector<int>, we got the same results
+	//=> works also with boost::numeric::ublas::vector<int>, as we get the same results
 	return 0;
 }

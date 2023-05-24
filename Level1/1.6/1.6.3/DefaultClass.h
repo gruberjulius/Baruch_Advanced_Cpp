@@ -1,6 +1,6 @@
 class DefaultClass
 {
 private:
-	int val{};
+	int val;
 };
 

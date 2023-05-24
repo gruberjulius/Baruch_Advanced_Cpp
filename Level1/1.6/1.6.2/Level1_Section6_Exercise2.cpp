@@ -18,7 +18,7 @@ private:
 
 public:
 // PART B)
-	// consttructor with the size of vector, the value of each element and the functions
+	// constructor with the size of vector, the value of each element and the functions
 	TMPClass(std::size_t n, double startValue, InputFunction iFunction, OutputFunction oFunction) {
 		in_function = iFunction;
 		out_function = oFunction;
@@ -32,8 +32,9 @@ public:
 };
 
 
-
+//create a function 
 using InputFunction = std::function<double()>;
+//create a function object 
 using OutputFunction = std::function<void(const std::vector<double>&)>;
 
 int main() {
@@ -41,8 +42,8 @@ int main() {
 	double startValue{1.0};
 	
 	// Setting input and output functions
-	// in function is just a constant value
-	double inValue{ 3.14 };
+	// in function is just returning a constant value
+	double inValue{ 3 };
 	InputFunction in_function = [=]() {return inValue; };
 	// out function is just printing each element of the vector
 	OutputFunction out_function = [](const std::vector<double>& in_vec) { 
@@ -51,9 +52,11 @@ int main() {
 	};
 
 	std::size_t n{ 10 };
+	//define an algo by including the in_function, out_function a starting value and the number of elements
 	TMPClass algo(n, startValue, in_function, out_function);
 	algo.out();
-	// we got indeed 3.14 for a vector of 10 values, works proprely
+	// we got indeed 3 for a vector of 10 values, works proprely as expected
+	return 0;
 }
 
 

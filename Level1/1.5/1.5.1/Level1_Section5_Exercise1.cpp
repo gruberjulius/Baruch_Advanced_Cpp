@@ -1,22 +1,24 @@
 #include<iostream>
 #include<string>
-#include<span>
+#include"span"
 #include<tuple>
 #include<vector>
 #include <algorithm>
 #include "boost/date_time/gregorian/gregorian.hpp"
 #include <array>
 
-
+//defines a person object
 using Person = std::tuple<std::string, std::string, boost::gregorian::date>;
 
 
 //Part B
+//prints a information about a person
 void print_Person(Person t){
 	std::cout << "Name of the Person: " << std::get<0>(t) << " Adress of Person: " << std::get<1>(t) 
 		<< " Birthday of Person: " <<  std::get<2>(t) << std::endl;
 }
 
+//compares different birthday with the comparison operator
 bool compare_Birthday(Person const One, Person Two){
 	return std::get<2>(One) < std::get<2>(Two);
 }
@@ -40,7 +42,7 @@ void print_People( std::vector<Person> People ){
 	std::cout << std::endl;
 }
 
-
+//print the spanrange of people
 void printSpanRange(const std::span<int>& span){
 	std::cout << "Range Based for loop: ";
 	for(auto i: span){
@@ -49,7 +51,7 @@ void printSpanRange(const std::span<int>& span){
 	std::cout << std::endl;
 }
 
-
+//print the list of people with an iterator
 void printIterator(const std::span<int>& span){
 	std::cout << "Iterator Based for loop: ";
 	for(auto ptr{span.begin()}; ptr != span.end(); ++ptr){
@@ -58,7 +60,7 @@ void printIterator(const std::span<int>& span){
 	std::cout << std::endl;
 }
 
-
+//print a span 
 void printSpanIndex(const std::span<int>& span){
 	std::cout << "Index Based for loop: ";
 	int n = span.size();
@@ -68,11 +70,12 @@ void printSpanIndex(const std::span<int>& span){
 	std::cout << std::endl;
 }
 
+//get the first elements in the span
 std::span<int> n_first_elem_span(const std::span<int>& span, int N){
 	return span.first(N);	
 }
 
-
+//get the last n elements in the span
 std::span<int> n_last_elem_span(const std::span<int>& span, int N){
 	return span.last(N);	
 }
@@ -112,7 +115,7 @@ int main(){
 	printSpanIndex(span3);
 
 	printSpanIndex(span1.first(2));
-	printSpanIndex(span1.last(2));	
+	printSpanIndex(span1.last(2);	
 	printSpanIndex(n_first_elem_span(span1, 2));
 	printSpanIndex(n_last_elem_span(span1, 2));
 

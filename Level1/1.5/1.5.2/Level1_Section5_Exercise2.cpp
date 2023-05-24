@@ -12,7 +12,9 @@ struct Calculator
 		{
 			T max_value = std::get<N - 1>(tuple);
 			return max_value;
-		}else{
+		}
+		else
+		{
 			T max_value = Calculator<T, Tuple, N - 1>::max(tuple);
 			return max_value;
 		}
@@ -25,7 +27,7 @@ struct Calculator
 
 	static T average(const Tuple& tuple){
 		T total = sum(tuple);
-		T average = total/N;
+		T average = total/(static_cast<T>(N));
 		return average;
 	}
 };
@@ -62,16 +64,14 @@ int main(){
 	std::cout << Calculator<double, std::tuple<double, double> , 2>::max(tuple2) << std::endl;
 	std::cout << Calculator<double, std::tuple<double, double> , 2>::sum(tuple2) << std::endl;
 	std::cout << Calculator<double, std::tuple<double, double> , 2>::average(tuple2) << std::endl;
-
-	std::complex<float> complex1 (10, -2);
-	std::complex<float> complex2 (11, -3);
-	std::complex<float> complex3 (12, -4);
-
-	Complex_Tuple  complex_elem = std::make_tuple<complex1, complex2, complex3>;
+	//works as expected
 
 
-	//code breaks totally: comparison operator overloaded
-	std::cout << Calculator<std::complex<float>, Complex_Tuple , 3>::max(complex_elem) << std::endl; 
+	Complex_Tuple  complex_elem = std::make_tuple(std::complex<float>{10, -2}, std::complex<float>{11, -3}, std::complex<float>{12, -4});
+
+
+	//code breaks totally: we did not define a comparison operator for complex so it does not work
+	//std::cout << Calculator<std::complex<float>, Complex_Tuple , 3>::max(complex_elem) << std::endl; 
 	std::cout << Calculator<std::complex<float>, Complex_Tuple , 3>::sum(complex_elem) << std::endl;
 	std::cout << Calculator< std::complex<float> , Complex_Tuple , 3>::average(complex_elem) << std::endl;
 
