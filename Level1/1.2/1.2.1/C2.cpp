@@ -2,6 +2,8 @@
 #include<vector>
 #include<algorithm>
 
+//Part C
+
 class C2{
 
 	private:

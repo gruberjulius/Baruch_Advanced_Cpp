@@ -2,6 +2,7 @@
 #include<vector>
 #include<algorithm>
 
+//Basic Class
 class C{
 
 	private:
@@ -12,7 +13,7 @@ class C{
 		C(std::vector<double> vec) : m_vec ( vec ) {std::cout << "C constructor has been called" << std::endl;};
 		C(const C& copy) {m_vec = copy.m_vec; std::cout << "C copy constructor has been called." << std::endl; };
         C& operator= (const C& copy) {m_vec = copy.m_vec; std::cout << " C assignment has been called." << std::endl; return *this;}
-        ~C() {std::cout << "Destructor Called" << std::endl;};
+    	~C() {std::cout << "Destructor Called" << std::endl;};
 
         void set_vec(  std::vector<double> input){
            m_vec = input;
@@ -41,5 +42,4 @@ int main(){
     C sumsi3 = sumsi2;
     C sumsi4{a};
     return 0;
-    
 }

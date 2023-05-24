@@ -56,7 +56,7 @@ void benchmark(){
 	auto endMove{ std::chrono::steady_clock::now()};
 	
 	auto MoveTime = endMove - startMove;
-	std::cout << "Time it took for copy: " << (MoveTime - IniTime).count() << std::endl; 
+	std::cout << "Time it took for move: " << (MoveTime - IniTime).count() << std::endl; 
 
 }
 
