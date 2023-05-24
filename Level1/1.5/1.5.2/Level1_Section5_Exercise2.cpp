@@ -33,7 +33,6 @@ struct Calculator
 };
 
 //Ending recursive function
-
 template <typename T, typename Tuple>
 struct  Calculator<T, Tuple, 1>
 {
@@ -53,7 +52,7 @@ using Complex_Tuple =  std::tuple<std::complex<float>, std::complex<float>,std::
 
 
 int main(){
-	std::tuple<double, double, double> tuple1 = std::make_tuple(10.0, 11.0, 12.0);
+	std::tuple<double, double, double> tuple1 = std::make_tuple(30.0, 31.0, 32.0);
 
 	std::tuple<double, double> tuple2 = std::make_tuple(10.0, 11.0);
 

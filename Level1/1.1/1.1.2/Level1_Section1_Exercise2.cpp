@@ -1,6 +1,7 @@
 #include<iostream>
+#include<vector>
 #include<complex>
-#include <numeric>
+#include<numeric>
 
 
 auto MyMultiply = [] (auto x, auto y) { return x*y ;};
