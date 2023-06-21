@@ -9,7 +9,9 @@
 
 //mutex lock for multiple threads
 std::mutex mutex1;
-int counterLockGuard{0.};
+int counterLockGuard{0};
+
+int attempts1 = 0;
 
 // Function using std::mutex lock_guard for synchronization
 void synchronizedFunction(std::string query) {
@@ -17,6 +19,7 @@ void synchronizedFunction(std::string query) {
     std::this_thread::sleep_for(std::chrono::seconds(1));
     std::cout << "Query: " << query << std::endl;
 	counterLockGuard++;
+    attempts1++;
 }
 
 //Part c 
@@ -34,7 +37,7 @@ void tryLockFunction(std::string query) {
                 std::this_thread::sleep_for(std::chrono::seconds(1));
                 std::cout << "Query: " << query << std::endl;
                 lock.unlock();
-                return 0;
+                return;
             }
         }
     }
@@ -76,6 +79,7 @@ void functionUniqueLock(std::string query) {
 };
 
 
+std::mutex mutex;
 
 // Function using std::mutex try_lock() for synchronization with attempt count
 int attempts2 = 0;
@@ -133,7 +137,7 @@ int main() {
     // Part b
     start = std::chrono::system_clock::now();
 
-    std::thread t4(tryLockFunction1, "One");
+    std::thread t4(tryLockFunction, "One");
     std::thread t5(tryLockFunction2, "Two");
     std::thread t6(tryLockFunction3, "Three");
     t4.join();

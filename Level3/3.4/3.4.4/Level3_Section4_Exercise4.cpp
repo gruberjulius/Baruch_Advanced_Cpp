@@ -82,6 +82,7 @@ int main(){
         packaged_task_queue.pop();  // taking task off of queue 
 
     }
+    std::cout << "Number of Tasks completed " << taskTmp << std::endl;
 
     return 0;
 
