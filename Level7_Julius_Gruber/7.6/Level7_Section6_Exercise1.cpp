@@ -6,10 +6,10 @@
 
 int main() {
 
-	// PART D)
+	// Part D
 	Counter* counter{ new Counter() };
 	
-	// PART L)
+	// Part L
 	
 	LongFormat double_obs(counter);
 	DoubleFormat long_obs(counter);
@@ -18,5 +18,5 @@ int main() {
 	counter->IncreaseCounter();
 	counter->DecreaseCounter();
 	counter->IncreaseCounter();
-	// => works but as we are dealing with small integers, we do not see the difference between long and double formats
+	//works as well 
 }

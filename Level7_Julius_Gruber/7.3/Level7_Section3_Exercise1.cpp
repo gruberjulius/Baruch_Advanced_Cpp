@@ -2,7 +2,7 @@
 #include "Point.h"
 #include "Line.h"
 #include "Circle.h"
-
+#include "PolyLine.h"
 #include <iostream>
 #include "PolyLine.h"
 
@@ -14,9 +14,11 @@
 
 int main() {
 
+	//Create the ShapeFactory Object
     ShapeFactory* console{ new ConsoleShapeFactory };
 
-    auto pl{ console->CreatePolyline()};
+	//Create a polyline object
+    auto pl{ console->CreatePolyLine()};
 	std::cout << "created: " << *pl << std::endl;
 	//everything works as expected
 }

@@ -13,8 +13,10 @@
 
 int main() {
 
+	//define the shape factory object
     ShapeFactory* console{ new ConsoleShapeFactory };
 
+	//call the CreateShapes function
     auto t{ console->CreateShapes()};
 	std::cout << "created: " << *std::get<0>(t) << ", " << *std::get<1>(t) << ", " << *std::get<2>(t) << std::endl;
 }

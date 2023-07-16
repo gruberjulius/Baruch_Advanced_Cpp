@@ -14,7 +14,7 @@ int main() {
 
 	//Part b, d
 
-	// lambda function for factory creation of point 
+	// lambda function for factory object creation
 	creator<Point> lambda_point = []() {return std::make_shared<Point>(Point(2, 2)); };
 
     //function object for factory creation
@@ -23,6 +23,7 @@ int main() {
 			return std::make_shared<Line>(Line(Point(0, 0), Point(1, 1)));
 		}
 	};
+    
     //create a function line object
 	creator<Line> function_object_line = FO();
 
@@ -32,10 +33,10 @@ int main() {
     //use the bind for the circle
 	creator<Circle> bind_circle = std::bind(&ConsoleShapeFactory::CreateCircle, old_console_factory);
 
+    //call the NewShapeFactory object
 	NewShapeFactory* factory = new NewShapeFactory(lambda_point, function_object_line, bind_circle);
 
 	// testing the methods
-	
 	std::cout << "point created:" << *(factory->CreatePoint()) << std::endl;
 	std::cout << "line created:" << *(factory->CreateLine()) << std::endl;
 	factory->CreateCircle();

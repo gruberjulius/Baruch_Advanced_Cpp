@@ -27,7 +27,7 @@ T F2(T& input) {
     return input;
 }
 
-// this is a time intensive function
+// this is a time intensive function as well
 template <typename T>
 T F3(T& input) {
     std::cout << "Thread ID: " << std::this_thread::get_id() << std::endl;

@@ -3,9 +3,8 @@
 #include <list>
 #include "Shape.h"
 
-// I know in the instructions it said to use Shape* s but in the
-// forum questions it says to use shared_ptr and so going with that
-
+//I implement it with a shared shape ptr here instead of a shape pointer as asked
+//in the question, but I read in the forum that most did it like this
 class ShapeComposite : public Shape {
 private:
     // Part B: private std::list data members 
@@ -27,8 +26,6 @@ public:
 
     //Default Constructor
     ShapeComposite(){}; 
-    // I know in the instructions it said to use Shape* s but in the 
-    // forum questions it says to use shared_ptr and so going with that 
     void AddShape(std::shared_ptr<Shape> s);  // Part D
 
     // Part E:

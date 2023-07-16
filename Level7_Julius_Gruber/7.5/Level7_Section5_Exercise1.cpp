@@ -20,7 +20,7 @@ int main()
   	std::cout << "Exact & state: " << p1.Distance(p2) << std::endl; // exact & state 
    	// use exact strategy
   	std::cout << "Exact & stateless: " << p1.Distance(p2, exact)
-            << std::endl;                                         // exact & stateless
+            << std::endl;                             // exact & stateless
   	p1.setStrategy(&approx);
   	std::cout << "Approx & state: " << p1.Distance(p2) << std::endl; // approx & state 
 
